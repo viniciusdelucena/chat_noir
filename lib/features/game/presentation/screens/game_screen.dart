@@ -1,76 +1,55 @@
-import 'package:flutter/material.dart';
+// lib/features/game/presentation/screens/game_screen.dart
 
-// Mais tarde, importaremos seus outros widgets, como o HexBoard.
-// import 'package:chat_noir/features/game/presentation/widgets/hex_board.dart';
+import 'package:chat_noir/features/game/logic/game_logic.dart';
+import 'package:chat_noir/features/game/presentation/widgets/hex_board.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class GameScreen extends StatelessWidget {
   const GameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // O Scaffold é a estrutura base de uma tela no Flutter.
-    // Pense nele como a tag <body> que contém tudo.
     return Scaffold(
-      // A AppBar é a barra no topo da tela, um ótimo lugar para o título.
-      // É aqui que colocamos o seu <h1>Chat Noir</h1>.
       appBar: AppBar(
         title: const Text('Chat Noir'),
-        // O centerTitle foi movido para o appTheme em lib/core/theme.dart
-        // mas podemos mantê-lo aqui se quisermos sobrescrever o tema.
       ),
-      // O `body` conterá todo o nosso conteúdo principal.
-      // Envolvemos o corpo com `SafeArea` para evitar que a interface do
-      // sistema (como a barra de navegação inferior) sobreponha nosso app.
       body: SafeArea(
         child: Padding(
-          // Adiciona um espaçamento interno em todas as bordas da tela,
-          // traduzindo o 'padding: 20px' do seu CSS.
           padding: const EdgeInsets.all(20.0),
-          // Usamos uma `Column` para empilhar os widgets verticalmente.
           child: Column(
-            // Alinha os filhos da coluna para esticar e preencher a largura.
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // Esta `Row` representa a <div id="scoreboard">.
-              // Usamos uma `Row` para colocar os dois placares lado a lado.
-              const Row(
-                // Distribui o espaço igualmente entre os widgets do placar.
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  // Corresponde a <span>Jogador: <span id="player-score">0</span></span>
-                  // O estilo de texto agora é herdado do appTheme.
-                  Text('Jogador: 0'),
-                  // Corresponde a <span>Gato: <span id="cpu-score">0</span></span>
-                  Text('Gato: 0'),
-                ],
+              // Usamos um Consumer aqui para que o placar se atualize
+              // automaticamente quando os valores mudarem na GameLogic.
+              Consumer<GameLogic>(
+                builder: (context, game, child) {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('Jogador: ${game.playerScore}'),
+                      Text('Gato: ${game.cpuScore}'),
+                    ],
+                  );
+                },
               ),
 
-              // Um espaço vertical entre o placar e o tabuleiro.
               const SizedBox(height: 20),
 
-              // Este `Expanded` com `Container` é um placeholder para a <div id="game-board">.
-              // O `Expanded` faz com que este widget ocupe todo o espaço vertical disponível.
-              // Futuramente, vamos substituí-lo pelo seu widget `HexBoard`.
-              Expanded(
-                child: Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Text('Aqui ficará o tabuleiro do jogo (HexBoard)'),
+              // Substituímos o placeholder pelo nosso widget HexBoard!
+              const Expanded(
+                child: Center( // Center para centralizar o FittedBox
+                  child: HexBoard(),
                 ),
               ),
 
-              // Um espaço vertical entre o tabuleiro e o botão.
               const SizedBox(height: 20),
 
-              // Este `ElevatedButton` corresponde ao seu <button onclick="resetGame()">.
-              // A propriedade `onPressed` é onde a lógica de `resetGame()` irá entrar.
               ElevatedButton(
                 onPressed: () {
-                  // A lógica do botão será implementada no Passo 3.
-                  print('Botão Resetar pressionado!');
+                  // Acessamos a GameLogic para chamar a função de reset.
+                  // O `read` é usado para chamar uma função sem ouvir por mudanças.
+                  context.read<GameLogic>().resetGame();
                 },
                 child: const Text('Resetar'),
               ),
