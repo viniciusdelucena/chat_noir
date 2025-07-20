@@ -1,5 +1,8 @@
+// lib/main.dart
+
+import 'package:chat_noir/core/theme.dart'; // Importe o tema
+import 'package:chat_noir/features/game/presentation/screens/game_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:chat_noir/features/game/presentation/screens/game_screen.dart'; // Importe a nova tela
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Chat Noir Game',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const GameScreen(), // Sua tela principal agora é GameScreen
+      title: 'Chat Noir',
+      debugShowCheckedModeBanner: false, // Remove a faixa "Debug"
+      theme: appTheme, // <<< APLIQUE O TEMA AQUI
+      home: const GameScreen(),
     );
   }
 }

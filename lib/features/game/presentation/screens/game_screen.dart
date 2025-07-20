@@ -21,7 +21,7 @@ class GameScreen extends StatelessWidget {
       // Usamos uma `Column` para empilhar os widgets verticalmente.
       body: Padding(
         // Adiciona um espaçamento interno em todas as bordas da tela.
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           // Alinha os filhos da coluna no centro do eixo horizontal.
           crossAxisAlignment: CrossAxisAlignment.stretch,
