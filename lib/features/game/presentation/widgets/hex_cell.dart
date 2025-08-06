@@ -1,5 +1,3 @@
-// lib/features/game/presentation/widgets/hex_cell.dart
-
 import 'package:chat_noir/core/styles/colors.dart';
 import 'package:chat_noir/features/game/data/cell_model.dart';
 import 'package:chat_noir/features/game/presentation/widgets/hex_clipper.dart';

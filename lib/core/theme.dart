@@ -1,5 +1,3 @@
-// lib/core/theme.dart
-
 import 'package:flutter/material.dart';
 import 'package:chat_noir/core/styles/colors.dart'; // Importando nossas cores
 

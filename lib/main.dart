@@ -1,5 +1,3 @@
-// lib/main.dart
-
 import 'package:chat_noir/core/theme.dart';
 import 'package:chat_noir/features/game/logic/game_logic.dart';
 import 'package:chat_noir/features/game/presentation/screens/game_screen.dart';

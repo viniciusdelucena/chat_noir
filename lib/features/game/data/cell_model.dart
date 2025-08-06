@@ -1,5 +1,3 @@
-// lib/features/game/data/cell_model.dart
-
 // Define os possíveis estados de uma célula.
 // Usar um enum é muito mais seguro e legível do que usar strings ou classes.
 enum CellState { empty, blocked, cat }

@@ -1,5 +1,3 @@
-// lib/features/game/logic/game_logic.dart
-
 import 'dart:async';
 import 'dart:collection';
 import 'dart:math';
@@ -137,7 +135,7 @@ class GameLogic extends ChangeNotifier {
       return _MinimaxResult(maxEval, bestMove);
     } else { // O jogador (minimizador) é simulado para bloquear
       double minEval = double.infinity;
-      // Esta parte é uma simplificação do seu JS. Uma simulação completa do bloqueio
+      // Esta parte é uma simplificação. Uma simulação completa do bloqueio
       // seria muito pesada. A avaliação do tabuleiro já lida com isto implicitamente.
       for (final neighbor in _getAvailableNeighbors(position)) {
          final result = _minimax(neighbor, depth - 1, true, alpha, beta);

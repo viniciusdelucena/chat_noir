@@ -1,9 +1,6 @@
-// lib/features/game/presentation/widgets/hex_clipper.dart
-
 import 'package:flutter/material.dart';
 
 // Esta classe define a forma de hexágono que será usada para recortar nosso widget.
-// É a tradução direta da propriedade `clip-path` do seu CSS.
 class HexClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

@@ -1,5 +1,3 @@
-// lib/features/game/presentation/widgets/hex_board.dart
-
 import 'package:chat_noir/features/game/logic/game_logic.dart';
 import 'package:chat_noir/features/game/presentation/widgets/hex_cell.dart';
 import 'package:flutter/material.dart';
