@@ -11,11 +11,9 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  // Listener para reagir às mudanças de estado do jogo
   void _gameStatusListener() {
     final game = context.read<GameLogic>();
     if (game.gameStatus != GameStatus.playing) {
-      // Atraso para garantir que a UI se reconstruiu antes de mostrar o diálogo
       Future.delayed(const Duration(milliseconds: 100), () {
         _showEndGameDialog(game.gameStatus);
       });
@@ -25,13 +23,11 @@ class _GameScreenState extends State<GameScreen> {
   @override
   void initState() {
     super.initState();
-    // Adiciona o listener quando o widget é criado
     context.read<GameLogic>().addListener(_gameStatusListener);
   }
 
   @override
   void dispose() {
-    // Remove o listener para evitar memory leaks
     context.read<GameLogic>().removeListener(_gameStatusListener);
     super.dispose();
   }
@@ -39,7 +35,7 @@ class _GameScreenState extends State<GameScreen> {
   void _showEndGameDialog(GameStatus status) {
     showDialog(
       context: context,
-      barrierDismissible: false, // O utilizador não pode fechar clicando fora
+      barrierDismissible: false, 
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(status == GameStatus.playerWon ? 'Você Venceu!' : 'O Gato Escapou!'),
@@ -50,8 +46,8 @@ class _GameScreenState extends State<GameScreen> {
             TextButton(
               child: const Text('Jogar Novamente'),
               onPressed: () {
-                Navigator.of(context).pop(); // Fecha o diálogo
-                context.read<GameLogic>().resetGame(); // Reinicia o jogo
+                Navigator.of(context).pop(); 
+                context.read<GameLogic>().resetGame(); 
               },
             ),
           ],

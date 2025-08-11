@@ -8,11 +8,8 @@ class HexBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Aqui, usamos `context.read` para obter a instância da GameLogic
-    // para podermos chamar a função de clique.
     final gameLogic = context.read<GameLogic>();
 
-    // Usamos `Consumer` para que o tabuleiro se reconstrua quando o estado mudar.
     return Consumer<GameLogic>(
       builder: (context, game, child) {
         return FittedBox(
@@ -27,8 +24,6 @@ class HexBoard extends StatelessWidget {
                     final cell = row[c];
                     return HexCell(
                       cell: cell,
-                      // A MUDANÇA ESTÁ AQUI:
-                      // Agora, o onTap chama o nosso novo método na GameLogic.
                       onTap: () => gameLogic.handlePlayerClick(cell.row, cell.col),
                     );
                   }),
